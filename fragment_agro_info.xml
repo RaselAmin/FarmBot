@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/fosholSomuho"
+        android:id="@+id/fosholSomuho"
+        android:textSize="20sp"
+        android:onClick="fosholSomuho"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/krishiProjukti"
+        android:id="@+id/krishiProjukti"
+        android:textSize="20sp"
+        android:onClick="krishiProjukti"/>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/listViewFeed" />
+
+
+</LinearLayout>

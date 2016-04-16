@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/f5"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    android:layout_marginTop="5dp"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Deb Nandan Dutta"
+            android:textColor="@color/f3"
+            android:textSize="18sp"
+            android:id="@+id/nameTv"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            android:textColor="@color/f3"
+            android:id="@+id/mobileTv"
+            android:text="018600000000"/>
+
+
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/detailsTv"
+        android:padding="5dp"
+        android:textSize="18sp"
+        android:textColor="@color/f3"
+        android:text="paddy – nagirsail – 40kg – 40tk"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:layout_weight="1"
+        android:textSize="18dp"
+        android:textColor="@color/f3"
+        android:id="@+id/dateTv"
+        android:text="13/09/2016"/>
+
+</LinearLayout>
