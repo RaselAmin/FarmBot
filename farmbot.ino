@@ -6,21 +6,14 @@ boolean ledStatus[4] = {LOW,LOW,LOW,LOW};
 int lastTime[] = {0,0,0,0};
 
 LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
-// Pins used for inputs and outputs********************************************************
-const int analogInPin[] = {A0,A1,A2,A3,A4,A5};// Analog input pins
-
-//Arrays for the 4 inputs**********************************************
+const int analogInPin[] = {A0,A1,A2,A3,A4,A5};
 float sensorValue[6] = {0,0,0,0,0,0};
 float voltageValue[6] = {0,0,0,0,0,0};
- 
-//Char used for reading in Serial characters
 char inbyte = 0;
-//*******************************************************************************************
- 
+
 void setup() {
-  // initialise serial communications at 9600 bps:
   Serial.begin(9600);
-  lcd.begin(20, 4); //change to 16, 2 for smaller 16x2 screens
+  lcd.begin(20, 4);
 
   for(int i=0; i<4; i++){
     pinMode(led[i], OUTPUT);
@@ -38,17 +31,16 @@ void loop() {
   getVoltageValue();
   printLCD();
   sendAndroidValues();
-  //when serial values have been received this will be true
   if (Serial.available() > 0){
     inbyte = Serial.read();
     
     switch (inbyte){
       case '0':
-        digitalWrite_2(0, LOW); //LED off
+        digitalWrite_2(0, LOW); 
         break;
 
       case '1':
-        digitalWrite_2(0, HIGH); //LED on
+        digitalWrite_2(0, HIGH);
         break;
 
       case '2':
@@ -76,20 +68,17 @@ void loop() {
         break;
     }
   }
-  //delay by 2s. Meaning we will be sent values every 2s approx
-  //also means that it can take up to 2 seconds to change LED state
+ 
   delay(1000);
 }
  
 void readSensors()
 {
-  // read the analog in value to the sensor array
   for(int p=0; p<6; p++){
     sensorValue[p] = analogRead(analogInPin[p]);
     if(p==0){
-      //Moisture vs Irrigation:
       if(sensorValue[p] > 700){
-        if(ledStatus[1] !=HIGH && (millis()-lastTime[1])>5000 ) //do not update within 5 seconds;
+        if(ledStatus[1] !=HIGH && (millis()-lastTime[1])>5000 ) 
           digitalWrite_2(1, HIGH);
           
       }else{
@@ -101,10 +90,7 @@ void readSensors()
     }
   }
 }
-
-//sends the values from the sensor over serial to BT module
 void sendAndroidValues(){
-  //puts # before the values so our app knows what to do with the data
   Serial.print('#');
 
 
@@ -113,20 +99,19 @@ void sendAndroidValues(){
     Serial.print('+');
   }
   
-  //for loop cycles through 4 sensors and sends values via serial
+ 
   for(int k=0; k<6; k++){
     Serial.print(voltageValue[k]);
     Serial.print('+');
-    //technically not needed but I prefer to break up data values
-    //so they are easier to see when debugging
+    
   }
- Serial.print('~'); //used as an end of transmission character - used in app for string length
+ Serial.print('~');
  Serial.println();
- delay(500);        //added a delay to eliminate missed transmissions
+ delay(500);        
 }
  
 void printLCD(){
-   //change 4 to 2 if using small screen
+   
    lcd.setCursor(0,0);
     lcd.print("      FarmBot");
     lcd.setCursor(0, 1);
